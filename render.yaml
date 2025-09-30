@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: rvc-backend
+    rootDir: backend
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: CLOUDINARY_NAME
+        sync: false
+      - key: CLOUDINARY_KEY
+        sync: false
+      - key: CLOUDINARY_SECRET
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  - type: static_site
+    name: rvc-frontend
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    publishDir: build
