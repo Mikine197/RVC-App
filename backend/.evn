@@ -1,0 +1,5 @@
+MONGO_URI=your_mongodb_atlas_uri
+CLOUDINARY_NAME=your_cloud_name
+CLOUDINARY_KEY=your_api_key
+CLOUDINARY_SECRET=your_api_secret
+JWT_SECRET=your_jwt_secret
