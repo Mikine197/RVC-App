@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import CreatePost from './pages/CreatePost';
+import Feed from './pages/Feed';
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/posts')
-      .then(res => setPosts(res.data))
-      .catch(err => console.log(err));
-  }, []);
+  if(!user) {
+    return (
+      <div>
+        <h1>RVC Social App</h1>
+        <Register />
+        <Login setUser={setUser} />
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1>RVC Social App</h1>
-      <div>
-        {posts.map(post => (
-          <div key={post._id} style={{border: '1px solid #ccc', margin: '10px', padding: '10px'}}>
-            <img src={post.mediaUrl} alt="" width="200" />
-            <p>{post.caption}</p>
-            <p>Likes: {post.likes.length}</p>
-          </div>
-        ))}
-      </div>
+      <h1>Welcome, {user.name}</h1>
+      <CreatePost user={user} />
+      <Feed user={user} />
     </div>
   );
 }
